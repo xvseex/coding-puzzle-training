@@ -12,7 +12,7 @@ manual memory management (new[] /delete[]).
 | --- | --- |
 | push | amortized 0(1) |
 | pop / peek /isEmpty | 0(1) |
-## RUn
+## Run
 g++ stack.cpp -o stack && ./stack
 Prints "Stacks test passed" if every test succeeds.
 
