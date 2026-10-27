@@ -6,3 +6,4 @@ week02-cpp/reverse_array
 week03-cpp/*
 !week03-cpp/*.cpp
 !week03-cpp/*.md
+!week03-cpp/*.hpp
