@@ -43,3 +43,20 @@ g++ -std=c++17 -Wall -Wextra -g -fsanitize=address,undefined test_queue.cpp -o t
 Expected output: `All queue tests passed`
 
 **What the tests cover:** FIFO ordering, growth past the initial capacity, index wraparound (100 enqueue/dequeue cycles), `clear()`, and the empty-queue exception.
+
+## Singly Linked List
+
+Nodes allocated with `new`, each pointing to the next. The destructor frees every node.
+
+| Operation | Time |
+|---|---|
+| `push_front(v)` | O(1) |
+| `push_back(v)` | O(n) |
+| `pop_front()` | O(1) |
+| `contains(v)`, `at(i)`, `remove(v)` | O(n) |
+
+**Build and run:**
+
+```
+g++ -std=c++17 -Wall -Wextra -g -fsanitize=address,undefined test_linked_list.cpp -o test_linked_list && ./test_linked_list
+```
