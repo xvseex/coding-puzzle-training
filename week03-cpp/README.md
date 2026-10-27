@@ -20,3 +20,26 @@ Prints "Stacks test passed" if every test succeeds.
 
 - pop() on an empty stack originally read data[-1] silently instead of failing, returning garbage (0) with no warning. Fixed by throwing std::out_of_range when the stack is empty.
 - push() past capacity originally wrote past the end of the allocated array (a buffer overflow) instead of growing it. Fized by adding grow(), which doubles capacity, copies existing elements, and frees the old array. 
+
+## Queue (circular buffer)
+
+A FIFO queue of `int` built on a dynamic array. `head` marks the front, and indices wrap around with `%`, so `dequeue` is O(1) with no shifting.
+
+| Operation | Time | Notes |
+|---|---|---|
+| `enqueue(v)` | O(1) amortized | Doubles capacity when full |
+| `dequeue()` | O(1) | Throws `std::underflow_error` if empty |
+| `front()` | O(1) | Throws `std::underflow_error` if empty |
+| `empty()`, `size()`, `clear()` | O(1) | |
+
+**Files:** `queue.hpp` (the class), `test_queue.cpp` (assert-based tests).
+
+**Build and run:**
+
+```
+g++ -std=c++17 -Wall -Wextra -g -fsanitize=address,undefined test_queue.cpp -o test_queue && ./test_queue
+```
+
+Expected output: `All queue tests passed`
+
+**What the tests cover:** FIFO ordering, growth past the initial capacity, index wraparound (100 enqueue/dequeue cycles), `clear()`, and the empty-queue exception.
